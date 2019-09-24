@@ -15,7 +15,7 @@ resource "google_container_cluster" "default" {
 //-----------------------------------------------------
 
 
-
+/*
 //create service
 resource "kubernetes_service" "backendsvc" {
   metadata {
@@ -36,12 +36,12 @@ resource "kubernetes_service" "backendsvc" {
 
 
 // create deployment
-/*
+
 resource "kubernetes_deployment" "backend" {
   metadata {
     name = "backend"
     labels = {
-      app = "backend"
+      test = "MyExampleApp"
     }
   }
 
@@ -49,14 +49,14 @@ resource "kubernetes_deployment" "backend" {
     replicas = 1
     selector {
       match_labels = {
-        app = "backend"
+        test = "MyExampleApp"
       }
     }
 
     template {
       metadata {
         labels = {
-          app = "backend"
+          test = "MyExampleApp"
         }
       }
 
@@ -72,8 +72,8 @@ resource "kubernetes_deployment" "backend" {
     }
   }
 }
-*/
 
+*/
 
 //-----------------------------------------------------
 
