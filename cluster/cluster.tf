@@ -64,7 +64,7 @@ resource "kubernetes_deployment" "backend" {
           name  = "backend"
           image = "kapildockerid/springimage"
             port {
-              container_port= 4200
+              container_port= 8080
          }
         }
       }
