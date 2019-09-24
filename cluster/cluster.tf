@@ -2,7 +2,7 @@
 resource "google_container_cluster" "default" {
   name               = "tf-gke-k8s"
   zone               = "${var.zone}"
-  initial_node_count = 3
+  initial_node_count = 1
   min_master_version = "${data.google_container_engine_versions.default.latest_node_version}"
   network            = "${google_compute_subnetwork.default.name}"
   subnetwork         = "${google_compute_subnetwork.default.name}"
@@ -36,6 +36,7 @@ resource "kubernetes_service" "backendsvc" {
 
 
 // create deployment
+/*
 resource "kubernetes_deployment" "backend" {
   metadata {
     name = "backend"
@@ -71,7 +72,7 @@ resource "kubernetes_deployment" "backend" {
     }
   }
 }
-
+*/
 
 
 //-----------------------------------------------------
