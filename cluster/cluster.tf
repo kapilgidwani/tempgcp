@@ -12,6 +12,72 @@ resource "google_container_cluster" "default" {
   }
 }
 
+//-----------------------------------------------------
+
+
+
+//create service
+resource "kubernetes_service" "backendsvc" {
+  metadata {
+    name = "backendsvc"
+      }
+  spec {
+    selector = {
+      app = "${kubernetes_deployment.backend.metadata.0.labels.app}"
+    }
+    session_affinity = "ClientIP"
+    port {
+      port        = 8080
+      target_port = 80
+    }
+    type = "LoadBalancer"
+  }
+}
+
+
+// create deployment
+resource "kubernetes_deployment" "backend" {
+  metadata {
+    name = "backend"
+    labels = {
+      app = "backend"
+    }
+  }
+
+  spec {
+    replicas = 1
+    selector {
+      match_labels = {
+        app = "backend"
+      }
+    }
+
+    template {
+      metadata {
+        labels = {
+          app = "backend"
+        }
+      }
+
+      spec {
+        container {
+          name  = "backend"
+          image = "kapildockerid/springimage"
+            port {
+              name = "frontend"
+              container_port= 8080
+         }
+        }
+      }
+    }
+  }
+}
+
+
+
+//-----------------------------------------------------
+
+
 output cluster_zone {
   value = "${google_container_cluster.default.zone}"
 }
