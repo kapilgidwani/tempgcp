@@ -5,7 +5,7 @@ resource "google_container_cluster" "default" {
   initial_node_count = 3
   min_master_version = "${data.google_container_engine_versions.default.latest_node_version}"
   network            = "${google_compute_subnetwork.default.name}"
-  subnetwork         = "${google_compute_subnetwork.default.name}"
+  #subnetwork         = "${google_compute_subnetwork.default.name}"
 
   node_config {
     machine_type = "${var.gke_machine_type}"
@@ -15,7 +15,7 @@ resource "google_container_cluster" "default" {
 //-----------------------------------------------------
 
 
-/*
+/* ------------------------ comment -------------------
 //create service
 resource "kubernetes_service" "backendsvc" {
   metadata {
@@ -72,7 +72,7 @@ resource "kubernetes_deployment" "backend" {
     }
   }
 }
-
+------------------------ comment -------------------
 */
 
 //-----------------------------------------------------
