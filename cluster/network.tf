@@ -1,9 +1,9 @@
 # Setup Network
 resource "google_compute_network" "default" {
   name                    = "${var.network_name}"
-  auto_create_subnetworks = "false"
+  auto_create_subnetworks = "true"
 }
-
+/*
 # Setup Subnetwork
 resource "google_compute_subnetwork" "default" {
   name                     = "${var.network_name}"
@@ -20,7 +20,7 @@ output network {
 output subnetwork_name {
   value = "${google_compute_subnetwork.default.name}"
 }
-
+*/
 output cluster_region {
   value = "${var.region}"
 }
